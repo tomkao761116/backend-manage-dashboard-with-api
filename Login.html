@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>電商管理後台</title>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="fontawesome 5.13.1/css/all.css">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="app">
+        <div class="container text-center">
+            <form class="form-signIn my-5" @submit.prevent="login">
+                <h1 class="h3 mb-3 font-weight-normal">Aiden's Garden</h1>
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <input type="email" id="inputEmail" class="form-control" v-model="user.email" placeholder="Email address" required autofocus>
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" id="inputPassword" class="form-control" v-model="user.password" placeholder="Password" required>
+                <button type="submit" class="btn btn-lg btn-info btn-block mt-5" >登入</button>
+                <p class="mt-5 mb-3 text-muted">&copy; 2020 Aiden's Garden</p>
+            </form>
+        </div>
+    </div>  
+    <!-- JAVA Script-->
+    <script src="js/jquery-3.5.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/login.js"></script>
+</body>
+
+</html>

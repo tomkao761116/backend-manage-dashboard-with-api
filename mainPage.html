@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>電商管理後台</title>
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="fontawesome 5.13.1/css/all.css">
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="app">
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+      <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3 " href="#">Aiden's Garden</a>
+      <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse"
+        data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+          <a class="nav-link" href="#">Sign out</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+          <div class="sidebar-sticky pt-3">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">
+                  <p>商品管理</p>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+          <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">商品管理</h1>
+          </div>
+          <div class="button mt-3 mb-3 pt-2 pb-2">
+            <button type="button" class="btn btn-info btn-sm" @click="openModal('new')">新增商品</button>
+          </div>
+          <div id="productTable">
+            <div id=header class="row font-weight-bold py-2 text-center border-bottom">
+              <div class="col-2">商品名稱</div>
+              <div class="col">商品分類</div>
+              <div class="col-3">商品描述</div>
+              <div class="col">原價</div>
+              <div class="col">售價</div>
+              <div class="col">是否啟用</div>
+              <div class="col-2">工具列</div>
+            </div>
+            <div :id="item.id" class="row py-2 text-center border-bottom " v-for="(item) in products" :key="item.id">
+              <div class="col-2 mt-auto mb-auto">{{ item.title }}</div>
+              <div class="col mt-auto mb-auto">{{ item.category }}</div>
+              <div class="col-3 mt-auto mb-auto">{{ item.content }}</div>
+              <div class="col mt-auto mb-auto">{{ item.origin_price }}</div>
+              <div class="col mt-auto mb-auto">{{ item.price }}</div>
+              <div class="col mt-auto mb-auto">
+                <span v-if="item.enabled" class="text-success">啟用</span>
+                <span v-else class="text-muted">未啟用</span>
+              </div>
+              <div class="col-2 mt-auto mb-auto">
+                <button type="button" class="btn btn-outline-info btn-sm m-1"
+                  @click="openModal('edit',item)">編輯</button>
+                <button type="button" class="btn btn-outline-danger btn-sm m-1"
+                  @click="openModal('delete',item)">刪除</button>
+              </div>
+            </div>
+            <pagination :pages="pagination" class="mt-4" @emit-pages="getProducts"></pagination>
+          </div>
+          
+        </main>
+      </div>
+    </div>
+    <!--Modals-->
+    <product-info ref="productInfo" :status="status" :is-new="isNew" :user="user" @update="getProducts"></product-info>
+    <del-product :temp-product="tempProduct" :user="user" @update="getProducts"></del-product>
+  </div>
+  <!-- JAVA Script-->
+    <script src="js/jquery-3.5.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!--商品元件-->
+    <script src="js/productInfo.js"></script>
+    <!--刪除元件-->
+    <script src="js/delProduct.js"></script>
+    <!--分頁元件-->
+    <script src="js/pagination.js"></script>
+    <!--主要元件-->
+    <script src="js/all.js"></script>
+    
+</body>
+
+</html>
